@@ -72,21 +72,21 @@ int	main(int ac, char **av, char **env)
 	int		n;
 
 	if (ac < 5)
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (0);
-	}
+		return (ft_putstr_fd("Error\n", 2), 0);
+	pipe = 0;
 	here_doc(ac, av, env);
 	fd1 = open(av[1], O_RDWR);
-	check_errors(fd1);
-	fd2 = open(av[ac - 1], O_RDWR | O_CREAT | O_TRUNC, 0777);
-	check_errors(fd2);
 	n = 3;
-	pipe = execute_com(av[2], env, fd1);
+	fd2 = open(av[ac - 1], O_RDWR | O_CREAT | O_TRUNC, 0777);
+	if (check_errors(fd2) == 0)
+		exit (0);
+	if (check_errors(fd1) == 1)
+		pipe = execute_com(av[2], env, fd1);
 	while ((ac - n) != 2)
 	{
 		pipe = execute_com(av[n], env, pipe);
 		n++;
 	}
 	final_process(fd2, pipe, av[ac - 2], env);
+	exit(0);
 }

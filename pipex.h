@@ -28,6 +28,6 @@ void	here_doc(int ac, char **av, char **env);
 void	write_on_file(int fd2, char *delimiter);
 int		execute_com(char *av, char **env, int fd);
 void	final_process(int fd2, int pipe, char *av, char **env);
-void	check_errors(int n);
+int		check_errors(int n);
 
 #endif

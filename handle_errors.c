@@ -12,11 +12,12 @@
 
 #include "pipex.h"
 
-void	check_errors(int n)
+int	check_errors(int n)
 {
 	if (n == -1)
 	{
 		perror ("Error");
-		exit (0);
+		return (0);
 	}
+	return (-1);
 }
