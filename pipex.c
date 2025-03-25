@@ -77,7 +77,7 @@ int	main(int ac, char **av, char **env)
 	here_doc(ac, av, env);
 	fd1 = open(av[1], O_RDWR);
 	n = 3;
-	fd2 = open(av[ac - 1], O_RDWR | O_CREAT | O_TRUNC, 0777);
+	fd2 = open(av[ac - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (check_errors(fd2) == 0)
 		exit (0);
 	if (check_errors(fd1) == 1)

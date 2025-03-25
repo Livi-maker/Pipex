@@ -40,7 +40,7 @@ void	here_doc(int ac, char **av, char **env)
 
 	if (ft_strncmp(av[1], "here_doc", 9) != 0)
 		return ;
-	fd1 = open("temp.txt", O_CREAT | O_RDWR, 0777);
+	fd1 = open("temp.txt", O_CREAT | O_RDWR, 0644);
 	check_errors(fd1);
 	n = 4;
 	write_on_file(fd1, av[2]);

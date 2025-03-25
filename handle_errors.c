@@ -19,5 +19,5 @@ int	check_errors(int n)
 		perror ("Error");
 		return (0);
 	}
-	return (-1);
+	return (1);
 }

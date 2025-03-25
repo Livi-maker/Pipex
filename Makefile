@@ -26,18 +26,16 @@ INCLUDE = -Ilibft -I/usr/include
 
 all: $(NAME)
 
-$(NAME): $(OBJ) lib
+$(NAME): $(OBJ)
+	@make -s -C libft
+	@make bonus -s -C libft
 	@$(CC) $(OBJ) $(LIBOBJECTS) -o $(NAME)
 	@echo "compilation done"
 
 %.o:%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE) 
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
-lib:
-	@make -s -C libft
-	@make bonus -s -C libft
-
-clean: 
+clean:
 	rm -f $(OBJ)
 	make clean -s -C libft
 
