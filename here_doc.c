@@ -21,7 +21,7 @@ void	write_on_file(int fd2, char *delimiter)
 		line = get_next_line(0);
 		if (!line)
 			return ;
-		if (ft_strncmp(line, delimiter, ft_strlen(delimiter)) == 0)
+		if (ft_strncmp(line, delimiter, ft_strlen(delimiter)) == 0 && *(line + ft_strlen(delimiter)) == '\n')
 		{
 			free (line);
 			break ;
@@ -40,6 +40,11 @@ void	here_doc(int ac, char **av, char **env)
 
 	if (ft_strncmp(av[1], "here_doc", 9) != 0)
 		return ;
+	if (ac < 6)
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit (1);
+	}
 	fd1 = open("temp.txt", O_CREAT | O_RDWR, 0644);
 	check_errors(fd1);
 	n = 4;

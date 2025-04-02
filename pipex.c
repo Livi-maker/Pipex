@@ -51,7 +51,7 @@ void	final_process(int fd2, int pipe, char *av, char **env)
 	{
 		com_flags = ft_split(av, ' ');
 		path = findpath(env, com_flags[0]);
-		check_errors(dup2(pipe, STDIN_FILENO));
+		check_errors(dup2(pipe, STDIN_FILENO) == 0);
 		check_errors(dup2(fd2, STDOUT_FILENO));
 		close(pipe);
 		close(fd2);
@@ -79,7 +79,7 @@ int	main(int ac, char **av, char **env)
 	n = 3;
 	fd2 = open(av[ac - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (check_errors(fd2) == 0)
-		exit (0);
+		exit (1);
 	if (check_errors(fd1) == 1)
 		pipe = execute_com(av[2], env, fd1);
 	while ((ac - n) != 2)
