@@ -12,7 +12,7 @@
 
 #include "pipex.h"
 
-int	check_errors(int n)
+int	file_error(int n)
 {
 	if (n == -1)
 	{
@@ -22,8 +22,19 @@ int	check_errors(int n)
 	return (1);
 }
 
-void	command_error()
+void	command_error(char	**com_flags)
 {
+	free_array(com_flags);
 	ft_putstr_fd("Command not found\n", 2);
 	exit(127);
+}
+
+void	check_error(int n, int fd, int fd2)
+{
+	if (n == -1)
+	{
+		close(fd);
+		close(fd2);
+		exit(1);
+	}
 }

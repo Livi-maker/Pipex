@@ -33,7 +33,7 @@ $(NAME): $(OBJ)
 	@echo "compilation done"
 
 %.o:%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE) -g
 
 clean:
 	rm -f $(OBJ)

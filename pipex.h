@@ -28,7 +28,9 @@ void	here_doc(int ac, char **av, char **env, int *exit_status);
 void	write_on_file(int fd2, char *delimiter);
 int		execute_com(char *av, char **env, int fd, int *exit_status);
 void	final_process(int fd2, int pipe, char *av, int *exit_status);
-int		check_errors(int n);
-void	command_error();
+void	check_error(int n, int fd, int fd2);
+void	command_error(char **com_flags);
+void	free_array(char **array);
+int		file_error(int n);
 
 #endif
