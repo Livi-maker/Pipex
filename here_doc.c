@@ -31,7 +31,7 @@ void	write_on_file(int fd2, char *delimiter)
 	}
 }
 
-void	here_doc(int ac, char **av, char **env)
+void	here_doc(int ac, char **av, char **env, int *exit_status)
 {
 	int		pipe;
 	int		fd1;
@@ -46,21 +46,18 @@ void	here_doc(int ac, char **av, char **env)
 		exit (1);
 	}
 	fd1 = open("temp.txt", O_CREAT | O_RDWR, 0644);
-	check_errors(fd1);
 	n = 4;
 	write_on_file(fd1, av[2]);
 	close(fd1);
 	fd1 = open("temp.txt", O_RDWR);
-	check_errors(fd1);
-	pipe = execute_com(av[3], env, fd1);
+	pipe = execute_com(av[3], env, fd1, exit_status);
 	while ((ac - n) != 2)
 	{
-		pipe = execute_com(av[n], env, pipe);
+		pipe = execute_com(av[n], env, pipe, exit_status);
 		n++;
 	}
 	fd2 = open(av[ac - 1], O_RDWR | O_CREAT | O_APPEND, 0777);
-	check_errors(fd2);
-	final_process(fd2, pipe, av[ac - 2], env);
-	check_errors(unlink ("temp.txt"));
-	exit (0);
+	final_process(fd2, pipe, av[ac - 2], exit_status);
+	unlink ("temp.txt");
+	exit (*exit_status);
 }

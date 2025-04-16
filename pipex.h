@@ -24,10 +24,11 @@
 # include <string.h>
 
 char	*findpath(char **env, char *com);
-void	here_doc(int ac, char **av, char **env);
+void	here_doc(int ac, char **av, char **env, int *exit_status);
 void	write_on_file(int fd2, char *delimiter);
-int		execute_com(char *av, char **env, int fd);
-void	final_process(int fd2, int pipe, char *av, char **env);
+int		execute_com(char *av, char **env, int fd, int *exit_status);
+void	final_process(int fd2, int pipe, char *av, int *exit_status);
 int		check_errors(int n);
+void	command_error();
 
 #endif

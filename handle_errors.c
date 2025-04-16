@@ -21,3 +21,9 @@ int	check_errors(int n)
 	}
 	return (1);
 }
+
+void	command_error()
+{
+	ft_putstr_fd("Command not found\n", 2);
+	exit(127);
+}
